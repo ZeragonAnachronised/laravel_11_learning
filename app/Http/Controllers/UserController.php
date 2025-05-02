@@ -16,7 +16,7 @@ class UserController extends Controller
 
         $rules = [
             'name' => 'required|string|alpha|min:4|max:32',
-            'email' => 'required|email:rfc,dns|unique:user,email',
+            'email' => 'required|email:rfc,dns|unique:users,email',
             'password' => ['required'], ['string'], Password::min(8)->max(64)->letters()->numbers()
         ];
 
@@ -54,7 +54,7 @@ class UserController extends Controller
             ], 400);
         }
         else if(Auth::attempt($request->all())) {
-            $token = Auth::user()->createToken('bearer_token');
+            $token = $request->user()->createToken('bearer_token');
             return response()->json([
                 'success' => true,
                 'token' => $token->plainTextToken
@@ -83,5 +83,9 @@ class UserController extends Controller
     }
     public function destroy() {
         Auth::user()->delete();
+        return response()->json([
+            'success' => true,
+            'message' => 'account deleted'
+        ], 200);
     }
 }
