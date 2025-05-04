@@ -9,6 +9,7 @@ use Illuminate\Validation\Rules\File;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post;
+use App\Events\NewPostSent;
 
 class PostController extends Controller
 {
@@ -32,6 +33,7 @@ class PostController extends Controller
             $post->filename = $name;
             $post->save();
             Storage::disk('public')->putFileAs('/', $request->file, $post->filename);
+            event(new NewPostSent($post));
             return response()->json([
                 'success' => true,
                 'filename' => $post->filename
