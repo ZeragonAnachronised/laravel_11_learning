@@ -15,7 +15,7 @@ class PostController extends Controller
 {
     public function upload(Request $request) {
         $rules = [
-            'file' => 'required',
+            'file' => 'present',
             'name' => 'required|string|max:16|min:4'
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -26,17 +26,17 @@ class PostController extends Controller
             ], 400);
         }
         else {
-            $file = $request->file;
-            $name = $file->hashName();
-            $extension = $file->extension();
-            $post = new Post();
-            $post->filename = $name;
-            $post->save();
-            Storage::disk('public')->putFileAs('/', $request->file, $post->filename);
-            event(new NewPostSent($post));
+            // $file = $request->file;
+            // $name = $file->hashName();
+            // $extension = $file->extension();
+            // $post = new Post();
+            // $post->filename = $name;
+            // $post->save();
+            // Storage::disk('public')->putFileAs('/', $request->file, $post->filename);
+            event(new NewPostSent($request->name));
             return response()->json([
                 'success' => true,
-                'filename' => $post->filename
+                'filename' => $request->name //$post->filename
             ], 200);
         }
     }

@@ -26,7 +26,6 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
-Echo.channel('posts').listen('post.created', (e) => {
+Echo.channel('posts.1').listen('post.created', (e) => {
     console.log(e);
-    
 })
