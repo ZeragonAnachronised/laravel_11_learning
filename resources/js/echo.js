@@ -12,6 +12,6 @@ window.Echo = new Echo({
     forceTLS: (import.meta.env.VITE_REVERB_SCHEME ?? 'https') === 'https',
     enabledTransports: ['ws', 'wss'],
 });
-window.Echo.channel('posts').listen('.post.created', (data) => {
+window.Echo.channel('posts').listen('NewPostSent', (data) => {
     console.log(data);
 })

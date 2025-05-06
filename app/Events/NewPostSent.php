@@ -10,7 +10,7 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewPostSent
+class NewPostSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -33,8 +33,8 @@ class NewPostSent
         ];
     }
 
-    public function broadcastAs(): string
-    {
-        return 'post.created';
-    }
+    // public function broadcastAs(): string
+    // {
+    //     return 'post.created';
+    // }
 }

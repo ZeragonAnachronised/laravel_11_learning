@@ -15,6 +15,6 @@ class SendPostNotification implements ShouldQueue
      */
     public function handle(NewPostSent $event): void
     {
-        Log::info('Новый пост создан:', [$event->post]);
+        //
     }
 }

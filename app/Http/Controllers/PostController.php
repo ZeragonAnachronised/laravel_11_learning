@@ -33,9 +33,7 @@ class PostController extends Controller
             // $post->filename = $name;
             // $post->save();
             // Storage::disk('public')->putFileAs('/', $request->file, $post->filename);
-            NewPostSent::dispatch([
-                'post' => $request->name
-            ]);
+            NewPostSent::dispatch($request->name);
             return response()->json([
                 'success' => true,
                 'filename' => $request->name //$post->filename
