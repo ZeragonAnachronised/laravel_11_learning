@@ -1,0 +1,108 @@
+openapi: 3.0.3
+info:
+  title: 'Laravel API Documentation'
+  description: 'Тестовое апи, созданное для изучения Laravel 11'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+tags:
+  -
+    name: Endpoints
+    description: ''
+paths:
+  /api/upload:
+    post:
+      summary: ''
+      operationId: postApiUpload
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  description: ''
+                  example: null
+                  nullable: false
+                name:
+                  type: string
+                  description: 'Must not be greater than 16 characters. Must be at least 4 characters.'
+                  example: vmqeopfuudtdsufvyvddqamniihfqcoynlazghdtqtqxbajwbpilpmufinllwloauydlsmsjur
+                  nullable: false
+              required:
+                - name
+      security: []
+  /api/registration:
+    post:
+      summary: ''
+      operationId: postApiRegistration
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must contain only letters. Must be at least 4 characters. Must not be greater than 32 characters.'
+                  example: vmqeopfuudtdsufvyvddq
+                  nullable: false
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: kunde.eloisa@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: consequatur
+                  nullable: false
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/authentication:
+    post:
+      summary: ''
+      operationId: postApiAuthentication
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: qkunze@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: ''
+                  example: 'O[2UZ5ij-e/dl4m{o,'
+                  nullable: false
+              required:
+                - email
+                - password
+      security: []
